@@ -11,7 +11,7 @@ package instr_register_pkg;
   //tip de date de tip enumerare care poate sa tina variabile
   // tine enumerari 16 la numar
   typedef enum logic [3:0] {
-  	ZERO,
+    ZERO,
     PASSA,
     PASSB,
     ADD,
@@ -24,13 +24,15 @@ package instr_register_pkg;
 
   //daca nu specificam ca este signed sau unsigned va fii unsigned by default
   typedef logic signed [31:0] operand_t;
-  
+  typedef logic signed [61:0] rezultat_t;
+
   typedef logic [4:0] address_t;
   
   typedef struct {
     opcode_t  opc;
     operand_t op_a;
     operand_t op_b;
+    rezultat_t rezultat;
   } instruction_t;
 
 endpackage: instr_register_pkg

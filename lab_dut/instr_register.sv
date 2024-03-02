@@ -21,6 +21,7 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
   timeunit 1ns/1ns;
 
   instruction_t  iw_reg [0:31];  // an array of instruction_word structures
+  operand_t operand_rezultat;
 
   // write to the register
   always@(posedge clk, negedge reset_n)   // write into register
@@ -29,7 +30,7 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
         iw_reg[i] = '{opc:ZERO,default:0};  // reset to all zeros -  asa se initializeaza o structura si pune in zero
     end
     else if (load_en) begin
-      iw_reg[write_pointer] = '{opcode,operand_a,operand_b};
+      iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_rezultat};
     end
 
   // read from the register
@@ -42,4 +43,18 @@ initial begin
 end
 `endif
 
+  always @(posedge clk , negedge reset_n)
+    case (opcode)
+    ZERO: operand_rezultat = 32'sd0;
+    PASSA: operand_rezultat = operand_a;
+    PASSB: operand_rezultat = operand_b;
+    ADD: operand_rezultat = operand_a + operand_b;
+    SUB: operand_rezultat = operand_a - operand_b;
+    MULT: operand_rezultat = operand_a * operand_b;
+    DIV: operand_rezultat = operand_a / operand_b;
+    MOD: operand_rezultat = operand_a % operand_b;
+    default: operand_rezultat = 'bx; // Handle undefined opcodes (optional)
+  endcase
+  
+  
 endmodule: instr_register
