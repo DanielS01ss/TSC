@@ -40,7 +40,6 @@ module instr_register_test
     $display("\nWriting values to register stack...");
     @(posedge clk) load_en = 1'b1;  // enable writing to register
     repeat (3) begin
-    ///aici pun repeat (3) begin - Daniel 06.03.2024
       @(posedge clk) randomize_transaction; // ce facem este ca 
       @(negedge clk) print_transaction; //
     end
@@ -48,7 +47,7 @@ module instr_register_test
 
     // read back and display same three register locations
     $display("\nReading back the same register locations written...");
-    for (int i=0; i<=10; i++) begin
+    for (int i=0; i<=2; i++) begin
       // later labs will replace this loop with iterating through a
       // scoreboard to determine which addresses were written and
       // the expected values to be read back
@@ -94,7 +93,7 @@ module instr_register_test
     $display("  opcode = %0d (%s)", instruction_word.opc, instruction_word.opc.name); /// opcode.name ne zice denumirea 
     $display("  operand_a = %0d",   instruction_word.op_a);
     $display("  operand_b = %0d\n", instruction_word.op_b);
-    $display("  result = %0d\n", instruction_word.rezultat);
+    $display("  result = %0d\n", instruction_word.operand_rezultat);
   endfunction: print_results
 
 endmodule: instr_register_test

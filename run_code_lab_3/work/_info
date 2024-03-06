@@ -1,0 +1,133 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/18.1
+vinstr_register
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 DXx4 work 18 instr_register_pkg 0 22 >L4;a39`7U4S;_dR=c>hk1
+!s110 1709708005
+!i10b 1
+!s100 haA`jE8SS_anXoEY:c<e40
+IeBPWW==Q>5zKHj[dnUaIW2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 instr_register_sv_unit
+S1
+Z3 dC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code
+w1709705810
+8C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register.sv
+FC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register.sv
+L0 9
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1709708005.000000
+!s107 C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register.sv|
+!i113 1
+Z5 o-work work -sv
+Z6 tCvgOpt 0
+Xinstr_register_pkg
+R0
+!s110 1709707999
+!i10b 1
+!s100 ;EBgO]Y4LVWN8>WWXYejh3
+I>L4;a39`7U4S;_dR=c>hk1
+V>L4;a39`7U4S;_dR=c>hk1
+S1
+R3
+w1709405718
+8C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_pkg.sv
+FC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_pkg.sv
+L0 7
+R4
+r1
+!s85 0
+31
+!s108 1709707999.000000
+!s107 C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_pkg.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_pkg.sv|
+!i113 1
+R5
+R6
+vinstr_register_test
+R0
+R1
+!s110 1709708307
+!i10b 1
+!s100 [:g2W:J_YTIi[:6kM^8`Q3
+I]bm]c:EOOQ<^:oeAc^Ca10
+R2
+!s105 instr_register_test_sv_unit
+S1
+R3
+w1709708303
+8C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_test.sv
+FC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_test.sv
+L0 8
+R4
+r1
+!s85 0
+31
+!s108 1709708307.000000
+!s107 C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_test.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/instr_register_test.sv|
+!i113 1
+R5
+R6
+Ytb_ifc
+R0
+R1
+!s110 1709708015
+!i10b 1
+!s100 9W>AVcHhBXii<Bfl@Xo5O2
+IUGgnH9RhHOozzM?GJM<5d1
+R2
+!s105 tb_ifc_sv_unit
+S1
+R3
+w1614777422
+8C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/tb_ifc.sv
+FC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/tb_ifc.sv
+L0 5
+R4
+r1
+!s85 0
+31
+!s108 1709708015.000000
+!s107 C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/tb_ifc.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/tb_ifc.sv|
+!i113 1
+R5
+R6
+vtop
+R0
+R1
+!s110 1709708012
+!i10b 1
+!s100 gI1hK3B=f24niJSW>eeaJ3
+IRHa5k<:0QOY4GG@DFY5V71
+R2
+!s105 top_sv_unit
+S1
+R3
+w1709102480
+8C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/top.sv
+FC:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/top.sv
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1709708012.000000
+!s107 C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/top.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/run_code/top.sv|
+!i113 1
+R5
+R6

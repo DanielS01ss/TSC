@@ -19,8 +19,10 @@ module instr_register_test
   );
 
   timeunit 1ns/1ns;
-
+  parameter WRITE_NR = 20;
+  parameter READ_NR = 20;
   int seed = 555;
+  instruction_t  iw_reg_test[31:0] ;
 
   initial begin
     $display("\n\n***********************************************************");
@@ -39,8 +41,7 @@ module instr_register_test
 
     $display("\nWriting values to register stack...");
     @(posedge clk) load_en = 1'b1;  // enable writing to register
-    repeat (3) begin
-    ///aici pun repeat (3) begin - Daniel 06.03.2024
+    repeat (WRITE_NR) begin
       @(posedge clk) randomize_transaction; // ce facem este ca 
       @(negedge clk) print_transaction; //
     end
@@ -48,7 +49,7 @@ module instr_register_test
 
     // read back and display same three register locations
     $display("\nReading back the same register locations written...");
-    for (int i=0; i<=10; i++) begin
+    for (int i=0; i<=READ_NR; i++) begin
       // later labs will replace this loop with iterating through a
       // scoreboard to determine which addresses were written and
       // the expected values to be read back
@@ -75,10 +76,12 @@ module instr_register_test
     //
 
     // este o variabila ce este impartita intre instante functia randomize returneaza o valoare random pe 32 de biti signed si daca avem un numar intre -2.. si +2 facem %16 si ne da intre -15 si 15
+    
     static int temp = 0;
     operand_a     <= $random(seed)%16;                 // between -15 and 15
     operand_b     <= $unsigned($random)%16;            // between 0 and 15 si ce face unsigned este ca converteste numarul din numar negativ in numar pozitiv si rezultatul va fii intre 0 si 15
     opcode        <= opcode_t'($unsigned($random)%8);  // between 0 and 7, cast to opcode_t type facem cast ca prima data facem random
+    iw_reg_test[write_pointer] <= '{opcode,operand_a,operand_b, 4'b0};
     write_pointer <= temp++; // se incremeneteaza write pointer si write_pointe
   endfunction: randomize_transaction
 
@@ -96,5 +99,41 @@ module instr_register_test
     $display("  operand_b = %0d\n", instruction_word.op_b);
     $display("  result = %0d\n", instruction_word.rezultat);
   endfunction: print_results
+
+  function void check_result;
+
+    
+    for (int i=0; i<=READ_NR; i++) begin
+      rezultat_t local_result [31:0];
+      if (instruction_word.op_a !== operand_a ) begin
+         $display("Operand_a este diferit de ce am generat!");
+      end
+
+      if (instruction_word.op_b !== operand_b ) begin
+         $display("Operand_b este diferit de ce am generat!");
+      end
+
+      case(instr_register_test.opc) 
+          ZERO: local_result = 32'sd0;
+          PASSA: local_result = instr_register_test.op_a;
+          PASSB: local_result = instr_register_test.op_b;
+          ADD: local_result = instr_register_test.op_a + instr_register_test.op_b;
+          SUB: local_result = instr_register_test.op_a - instr_register_test.op_b;
+          MULT: local_result = instr_register_test.op_a * instr_register_test.op_b;
+          DIV: local_result = instr_register_test.op_a / instr_register_test.op_b;
+          MOD: local_result = instr_register_test.op_a % instr_register_test.op_b;
+          default: local_result = 'bx;
+      endcase
+
+        if (  local_result === instr_register_test.rezultat) begin
+          $display("Rezultatele sunt asemanatoare");
+        end else begin
+          $display("We have a problem!");
+        end
+      
+    
+    end
+  
+  endfunction;
 
 endmodule: instr_register_test
