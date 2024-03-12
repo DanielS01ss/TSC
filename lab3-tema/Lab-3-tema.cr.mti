@@ -1,0 +1,40 @@
+{C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module instr_register
+-- Importing package instr_register_pkg
+
+Top level modules:
+	instr_register
+
+} {} {}} {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/top_ifc.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/top_ifc.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling interface tb_ifc
+-- Importing package instr_register_pkg
+
+Top level modules:
+	--none--
+
+} {} {}} {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register_pkg.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register_pkg.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package instr_register_pkg
+
+Top level modules:
+	--none--
+
+} {} {}} {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register_test.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/instr_register_test.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module instr_register_test
+-- Importing package instr_register_pkg
+
+Top level modules:
+	instr_register_test
+
+} {} {}} {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/top.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Daniel/Desktop/Facultate/Anul 4/Sem2/TS/Lab_TSC/lab3-tema/top.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module top
+-- Importing package instr_register_pkg
+
+Top level modules:
+	top
+
+} {} {}}
