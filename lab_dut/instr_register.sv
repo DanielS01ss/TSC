@@ -1,3 +1,4 @@
+
 /***********************************************************************
  * A SystemVerilog RTL model of an instruction regisgter
  *
@@ -31,7 +32,19 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
     end
     else if (load_en) begin
       
-      iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_rezultat};
+
+      case (opcode)
+        ZERO: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,0};
+        PASSA: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a};
+        PASSB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_b};
+        ADD: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a + operand_b};
+        SUB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a - operand_b};
+        MULT: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a * operand_b};  
+        DIV: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a / operand_b};  
+        MOD: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a % operand_b}; 
+        default:iw_reg[write_pointer] = '{opcode,operand_a,operand_b,'bx};
+      endcase
+      // iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_rezultat};
     end
 
   // read from the register
@@ -44,18 +57,7 @@ initial begin
 end
 `endif
 
-  always @(posedge clk , negedge reset_n)
-    case (opcode)
-    ZERO: operand_rezultat = 32'sd0;
-    PASSA: operand_rezultat = operand_a;
-    PASSB: operand_rezultat = operand_b;
-    ADD: operand_rezultat = operand_a + operand_b;
-    SUB: operand_rezultat = operand_a - operand_b;
-    MULT: operand_rezultat = operand_a * operand_b;
-    DIV: operand_rezultat = operand_a / operand_b;
-    MOD: operand_rezultat = operand_a % operand_b;
-    default: operand_rezultat = 'bx; // Handle undefined opcodes (optional)
-  endcase
+  
   
   
 endmodule: instr_register
