@@ -3,4 +3,4 @@
 
 ../lab01_testbench_interface/instr_register_test.sv   	                +incdir+../lab01_testbench_interface
 ../lab01_testbench_interface/top.sv                      +incdir+../lab01_testbench_interface
-../lab01_testbench_interface/top_ifc.sv                      +incdir+../lab01_testbench_interface
+
