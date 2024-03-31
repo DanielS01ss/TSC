@@ -20,14 +20,16 @@ module instr_register_test
   );
 
   timeunit 1ns/1ns;
+   int file_descriptor;
   parameter WRITE_NR = 20;
   parameter READ_NR = 20;
   int seed = 555;
   instruction_t  iw_reg_test[31:0] ;
   instruction_t  instruction_word_instance;
   operand_t res = 0;
-  int  write_order = 0; 
-  int  read_order = 0 ;
+  parameter  WRITE_ORDER = 0; 
+  parameter  READ_ORDER = 0 ;
+  parameter TEST_NAME = "";
   static int temp = 0;
   int failed_tests = 0;
  // write order - 1 decremental 
@@ -48,41 +50,9 @@ module instr_register_test
     repeat (2) @(posedge clk) ;     // hold in reset for 2 clock cycles
     reset_n        = 1'b1;          // deassert reset_n (active low)
 
-
-
-  for(int j = 1;j<=9; j++) begin
-     if( j == 1) begin
-      read_order = 0;
-      write_order = 0;
-     end else if ( j == 2) begin
-        read_order = 0;
-        write_order = 1;
-     end else if ( j == 3) begin
-        read_order = 0;
-        write_order = 2;
-     end else if ( j == 4) begin
-        read_order = 1;
-        write_order = 0;
-     end else if ( j == 5) begin
-        read_order = 1;
-        write_order = 1;
-     end else if ( j == 6) begin
-        read_order = 1;
-        write_order = 2;
-      end else if ( j == 7) begin
-        read_order = 2;
-        write_order = 0;
-      end else if ( j == 8) begin
-        read_order = 2;
-        write_order = 1;
-      end else if ( j == 9) begin
-        read_order = 2;
-        write_order = 2;
-      end;    
-
-     if (write_order == 0) begin
+     if (WRITE_ORDER == 0) begin
           temp = 0 ;
-      end else if (write_order == 1) begin
+      end else if (WRITE_ORDER == 1) begin
         temp = 31;
       end 
 
@@ -100,7 +70,7 @@ module instr_register_test
       // later labs will replace this loop with iterating through a
       // scoreboard to determine which addresses were written and
       // the expected values to be read back
-      if (read_order == 0) begin
+      if (READ_ORDER == 0) begin
         read_pointer = i;
       end else if (read_pointer == 1) begin
         read_pointer = READ_NR - i;
@@ -113,18 +83,49 @@ module instr_register_test
       @(posedge clk) check_result;
     end
 
+ 
+     file_descriptor = $fopen("../reports/regression_transcript/regression_status.txt", "a");
+     if (file_descriptor != 0) begin
+      
+       if (failed_tests != 0) begin
+        $fwrite(file_descriptor, "\n***********************************************************\n");
+        $fwrite(file_descriptor, "***                       STATISTICS                      ***\n");
+        $fwrite(file_descriptor, "***                     TEST NAME: %s                     ***\n", TEST_NAME);
+        $fwrite(file_descriptor, "***               READ_ORDER = %0d ,  WRITE_ORDER = %0d    ***\n",READ_ORDER, WRITE_ORDER);
+        $fwrite(file_descriptor, "***               TESTS FAILED = %0d  TOTAL_TESTS =  %0d   ***\n",failed_tests, (READ_NR));
+        $fwrite(file_descriptor, "*                 STATUS: FAILED                            *\n\n");
+        $fwrite(file_descriptor, "*************************************************************\n\n");
+
+       end else begin
+        $fwrite(file_descriptor, "\n***********************************************************\n");
+        $fwrite(file_descriptor, "***                       STATISTICS                       ***\n");
+        $fwrite(file_descriptor, "***                     TEST NAME: %s                      ***\n", TEST_NAME);
+        $fwrite(file_descriptor, "***               READ_ORDER = %0d ,  WRITE_ORDER = %0d    ***\n",READ_ORDER, WRITE_ORDER);
+        $fwrite(file_descriptor, "***               TESTS FAILED = %0d  TOTAL_TESTS =  %0d   ***\n",failed_tests, (READ_NR));
+        $fwrite(file_descriptor, "**                  STATUS :  PASSED                       *\n\n");
+        $fwrite(file_descriptor, "*************************************************************\n\n");
+
+       end
+       
+      end
+     
     $display("\n***********************************************************");
     $display(  "***                       STATISTISCS                  ***");
-    $display(  "***           read_order = %0d ,  write_order = %0d     ***",read_order, write_order);
+    $display(  "***           READ_ORDER = %0d ,  WRITE_ORDER = %0d     ***",READ_ORDER, WRITE_ORDER);
     $display(  "***           TESTS FAILED = %0d  TOTAL_TESTS =  %0d    ***", failed_tests, (READ_NR));
     $display(  "***********************************************************\n");
     failed_tests = 0;
-  end
+
 
     // read back and display same three register locations
     @(posedge clk) ;
     $finish;
-  end
+
+     end
+     
+
+   
+  
 
   function void randomize_transaction;
     // A later lab will replace this function with SystemVerilog
@@ -136,9 +137,9 @@ module instr_register_test
     //
 
     // este o variabila ce este impartita intre instante functia randomize returneaza o valoare random pe 32 de biti signed si daca avem un numar intre -2.. si +2 facem %16 si ne da intre -15 si 15
-    if (write_order == 0) begin
+    if (WRITE_ORDER == 0) begin
           write_pointer = temp++;
-      end else if (write_order == 1) begin
+      end else if (WRITE_ORDER == 1) begin
         write_pointer = temp--;
       end else begin
         write_pointer = $unsigned($random)%32;

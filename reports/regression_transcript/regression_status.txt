@@ -1,0 +1,40 @@
+
+***********************************************************
+***                       STATISTICS                      ***
+***                     TEST NAME: testul_1                     ***
+***               READ_ORDER = 0 ,  WRITE_ORDER = 0    ***
+***               TESTS FAILED = 1  TOTAL_TESTS =  10   ***
+*                 STATUS: FAILED                            *
+
+*************************************************************
+
+
+***********************************************************
+***                       STATISTICS                      ***
+***                     TEST NAME: testul_2                     ***
+***               READ_ORDER = 1 ,  WRITE_ORDER = 0    ***
+***               TESTS FAILED = 2  TOTAL_TESTS =  20   ***
+*                 STATUS: FAILED                            *
+
+*************************************************************
+
+
+***********************************************************
+***                       STATISTICS                      ***
+***                     TEST NAME: testul_3                     ***
+***               READ_ORDER = 0 ,  WRITE_ORDER = 1    ***
+***               TESTS FAILED = 2  TOTAL_TESTS =  20   ***
+*                 STATUS: FAILED                            *
+
+*************************************************************
+
+
+***********************************************************
+***                       STATISTICS                      ***
+***                     TEST NAME: testul_4                     ***
+***               READ_ORDER = 1 ,  WRITE_ORDER = 1    ***
+***               TESTS FAILED = 2  TOTAL_TESTS =  20   ***
+*                 STATUS: FAILED                            *
+
+*************************************************************
+
