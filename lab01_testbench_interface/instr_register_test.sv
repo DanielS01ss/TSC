@@ -20,7 +20,7 @@ module instr_register_test
   );
 
   timeunit 1ns/1ns;
-   int file_descriptor;
+  int file_descriptor;
   parameter WRITE_NR = 20;
   parameter READ_NR = 20;
   int seed = 555;
@@ -84,7 +84,25 @@ module instr_register_test
     end
 
  
-     file_descriptor = $fopen("../reports/regression_transcript/regression_status.txt", "a");
+    final_report;
+     
+    $display("\n***********************************************************");
+    $display(  "***                       STATISTISCS                  ***");
+    $display(  "***           READ_ORDER = %0d ,  WRITE_ORDER = %0d     ***",READ_ORDER, WRITE_ORDER);
+    $display(  "***           TESTS FAILED = %0d  TOTAL_TESTS =  %0d    ***", failed_tests, (READ_NR));
+    $display(  "***********************************************************\n");
+    failed_tests = 0;
+
+
+    // read back and display same three register locations
+    @(posedge clk) ;
+    $finish;
+
+    end
+
+  function void final_report;
+
+  file_descriptor = $fopen("../reports/regression_transcript/regression_status.txt", "a");
      if (file_descriptor != 0) begin
       
        if (failed_tests != 0) begin
@@ -106,27 +124,11 @@ module instr_register_test
         $fwrite(file_descriptor, "*************************************************************\n\n");
 
        end
-       
+        $fclose(file_descriptor);
       end
-     
-    $display("\n***********************************************************");
-    $display(  "***                       STATISTISCS                  ***");
-    $display(  "***           READ_ORDER = %0d ,  WRITE_ORDER = %0d     ***",READ_ORDER, WRITE_ORDER);
-    $display(  "***           TESTS FAILED = %0d  TOTAL_TESTS =  %0d    ***", failed_tests, (READ_NR));
-    $display(  "***********************************************************\n");
-    failed_tests = 0;
+  endfunction: final_report 
 
-
-    // read back and display same three register locations
-    @(posedge clk) ;
-    $finish;
-
-     end
-     
-
-   
   
-
   function void randomize_transaction;
     // A later lab will replace this function with SystemVerilog
     // constrained random values

@@ -1,6 +1,6 @@
 # 0
 # vsim -novopt -quiet -nocoverage "+notimingchecks" "+nowarnTSCALE" -sva top -GTEST_NAME=testul_4 -GWRITE_ORDER=1 -GWRITE_NR=20 -GREAD_ORDER=1 -GREAD_NR=20 
-# Start time: 18:12:42 on Mar 31,2024
+# Start time: 18:24:21 on Mar 31,2024
 # 
 # Writing values to register stack...
 # write_pointer :  31
@@ -363,7 +363,7 @@
 # ***           TESTS FAILED = 2  TOTAL_TESTS =  20    ***
 # ***********************************************************
 # 
-# ** Note: $finish    : ../lab01_testbench_interface/instr_register_test.sv(122)
+# ** Note: $finish    : ../lab01_testbench_interface/instr_register_test.sv(99)
 #    Time: 666 ns  Iteration: 1  Instance: /top/test
-# End time: 18:12:43 on Mar 31,2024, Elapsed time: 0:00:01
+# End time: 18:24:21 on Mar 31,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
