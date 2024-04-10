@@ -23,15 +23,16 @@ module instr_register_test
   int file_descriptor;
   parameter WRITE_NR = 20;
   parameter READ_NR = 20;
-  int seed = 555;
   instruction_t  iw_reg_test[31:0] ;
   instruction_t  instruction_word_instance;
   operand_t res = 0;
   parameter  WRITE_ORDER = 0; 
   parameter  READ_ORDER = 0 ;
   parameter TEST_NAME = "";
+  parameter SEED_VALUE = 0;
   static int temp = 0;
   int failed_tests = 0;
+  int seed = SEED_VALUE;
  // write order - 1 decremental 
  // write order - 0 incremental 
  // write order - 2 este random
