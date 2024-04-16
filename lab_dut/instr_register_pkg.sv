@@ -19,7 +19,8 @@ package instr_register_pkg;
     SUB,
     MULT,
     DIV,
-    MOD
+    MOD,
+    POW
   } opcode_t;
 
 

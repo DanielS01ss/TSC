@@ -79,7 +79,7 @@ module instr_register_test
         read_pointer = $unsigned($random)%32;
       end
       $display("Read pointer: %0d ", read_pointer);
-      @(posedge clk) read_pointer = i;
+      @(posedge clk) read_pointer = i;  
       @(negedge clk) print_results;
       @(posedge clk) check_result;
     end
@@ -145,13 +145,13 @@ module instr_register_test
       end else if (WRITE_ORDER == 1) begin
         write_pointer = temp--;
       end else begin
-        write_pointer = $unsigned($random)%32;
+        write_pointer = $unsigned($random(seed))%32;
       end
     
     $display("write_pointer :  %0d", write_pointer);
     operand_a     = $random(seed)%16;                 // between -15 and 15
-    operand_b     = $unsigned($random)%16;            // between 0 and 15 si ce face unsigned este ca converteste numarul din numar negativ in numar pozitiv si rezultatul va fii intre 0 si 15
-    opcode        = opcode_t'($unsigned($random)%8);  // between 0 and 7, cast to opcode_t type facem cast ca prima data facem random
+    operand_b     = $unsigned($random(seed))%16;            // between 0 and 15 si ce face unsigned este ca converteste numarul din numar negativ in numar pozitiv si rezultatul va fii intre 0 si 15
+    opcode        = opcode_t'($unsigned($random(seed))%8);  // between 0 and 7, cast to opcode_t type facem cast ca prima data facem random
     iw_reg_test[write_pointer] = '{opcode,operand_a,operand_b, 4'b0};
     
     
@@ -170,6 +170,7 @@ module instr_register_test
     $display("  operand_a = %0d",   instruction_word.op_a);
     $display("  operand_b = %0d\n", instruction_word.op_b);
     $display("  result = %0d\n", instruction_word.rezultat);
+    $display("  Time: %t", $time);
   endfunction: print_results
 
  function void check_result;
@@ -177,15 +178,24 @@ module instr_register_test
     
     
       instruction_word_instance = iw_reg_test[read_pointer];
-    
-      if (instruction_word_instance.op_a != instruction_word.op_a ) begin
+
+      if(instruction_word_instance.op_a === 'hxx) begin
+       
+          return;
+      end 
+      
+      if (instruction_word_instance.op_a !== instruction_word.op_a ) begin
          $display("Operand_a este diferit de ce am generat!");
          $display("iwts operand_a = %0d , operand_a = %0d",instruction_word_instance.op_a , instruction_word.op_a );
+         $display("Time: %t", $time);
+         $display("Read pointer: %0d", read_pointer);
       end
 
-      if (instruction_word_instance.op_b != instruction_word.op_b ) begin
+      if (instruction_word_instance.op_b !== instruction_word.op_b ) begin
          $display("Operand_b este diferit de ce am generat!");
          $display("iwts operand_b = %0d , operand_b = %0d",instruction_word_instance.op_b , instruction_word.op_b );
+         $display("Time: %t", $time);
+         $display("Read pointer: %0d", read_pointer);
       end
 
       
@@ -198,20 +208,20 @@ module instr_register_test
         SUB: res = instruction_word_instance.op_a - instruction_word_instance.op_b;
         MULT: res = instruction_word_instance.op_a * instruction_word_instance.op_b;
         DIV: if(instruction_word_instance.op_b === 0) res = 0; else res = instruction_word_instance.op_a / instruction_word_instance.op_b;
-        MOD: res = instruction_word_instance.op_a % instruction_word_instance.op_b;
+        MOD:  if(instruction_word_instance.op_b === 0) res = 0; else res = instruction_word_instance.op_a % instruction_word_instance.op_b;
+        POW: res = instruction_word_instance.op_a ** instruction_word_instance.op_b;
       endcase
-     
-        if ( res === instruction_word.rezultat) begin
-          $display("Rezultatele sunt asemanatoare");
-          $display("rezultatul calculat: %0d", instruction_word_instance.rezultat);
-          $display("rezultatul stocat : %0d ", res);
-
-        end else begin
+      
+        if ( res !== instruction_word.rezultat) begin
 
           failed_tests = failed_tests + 1;
+          
           $display("Rezultatele nu se aseamana");
           $display("rezultatul calculat: %0d", instruction_word_instance.rezultat);
           $display("rezultatul stocat : %0d ", res);
+          $display("opcode = %0d (%s)", instruction_word.opc, instruction_word.opc.name);
+          $display("operand_a = %0d ,  operand_b = %0d ", instruction_word_instance.op_a, instruction_word_instance.op_b);
+          $display("Time: %t", $time);
         end
     
   endfunction;
