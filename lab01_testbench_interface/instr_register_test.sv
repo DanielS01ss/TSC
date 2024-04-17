@@ -209,7 +209,7 @@ module instr_register_test
         MULT: res = instruction_word_instance.op_a * instruction_word_instance.op_b;
         DIV: if(instruction_word_instance.op_b === 0) res = 0; else res = instruction_word_instance.op_a / instruction_word_instance.op_b;
         MOD:  if(instruction_word_instance.op_b === 0) res = 0; else res = instruction_word_instance.op_a % instruction_word_instance.op_b;
-        POW: res = instruction_word_instance.op_a ** instruction_word_instance.op_b;
+        POW: if(instruction_word_instance.op_b === 0) res = 1; else res = instruction_word_instance.op_a ** instruction_word_instance.op_b;
       endcase
       
         if ( res !== instruction_word.rezultat) begin
