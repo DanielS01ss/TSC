@@ -32,23 +32,26 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
     end
     else if (load_en) begin
       
-
-      case (opcode)
-        ZERO: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,0};
-        PASSA: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a};
-        PASSB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_b};
-        ADD: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a + operand_b};
-        SUB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a - operand_b};
-        MULT: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a * operand_b};  
-        DIV:  if(operand_b == 0) iw_reg[write_pointer] = '{opcode,operand_a,operand_b, 0}; else  iw_reg[write_pointer] = '{opcode,operand_a,operand_b, operand_a / operand_b};
-        MOD:  if(operand_b == 0) iw_reg[write_pointer] = '{opcode,operand_a,operand_b, 0}; else  iw_reg[write_pointer] = '{opcode,operand_a,operand_b, operand_a % operand_b};
-        POW:  if(operand_b == 0) iw_reg[write_pointer] = '{opcode, operand_a, operand_b, 1} else if(operand_b == 0) iw_reg[write_pointer] = '{opcode, operand_a, operand_b, operand_a ** operand_b};
-        default:iw_reg[write_pointer] = '{opcode,operand_a,operand_b,'bx};
-      endcase
+      if(operand_a !== 'hx && operand_b !== 'hx && opcode !== 'hx) begin
+         case (opcode)
+            ZERO: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,0};
+            PASSA: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a};
+            PASSB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_b};
+            ADD: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a + operand_b};
+            SUB: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a - operand_b};
+            MULT: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a * operand_b};  
+            DIV:  if(operand_b === 0) iw_reg[write_pointer] = '{opcode,operand_a,operand_b, 0}; else  iw_reg[write_pointer] = '{opcode,operand_a,operand_b, operand_a / operand_b};
+            MOD:  if(operand_b === 0) iw_reg[write_pointer] = '{opcode,operand_a,operand_b, 0}; else  iw_reg[write_pointer] = '{opcode,operand_a,operand_b, operand_a % operand_b};
+            POW:  if(operand_b === 0) iw_reg[write_pointer] = '{opcode, operand_a, operand_b, 1}; else  iw_reg[write_pointer] = '{opcode, operand_a, operand_b, operand_a ** operand_b};
+            default: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,'bx}; 
+        endcase
+      end
+     
       // iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_rezultat};
     end
 
   // read from the register
+  
   assign instruction_word = iw_reg[read_pointer];  // continuously read from register
 
 //DIV:  if(operand_b == 0) iw_reg[write_pointer] = '{opcode,operand_a,operand_b, 0}; else  iw_reg[write_pointer] = '{opcode,operand_a,operand_b, operand_a / operand_b};
