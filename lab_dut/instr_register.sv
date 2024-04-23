@@ -32,7 +32,6 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
     end
     else if (load_en) begin
       
-      if(operand_a !== 'hx && operand_b !== 'hx && opcode !== 'hx) begin
          case (opcode)
             ZERO: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,0};
             PASSA: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_a};
@@ -45,7 +44,6 @@ import instr_register_pkg::*;  // user-defined types are defined in instr_regist
             POW:  if(operand_b === 0) iw_reg[write_pointer] = '{opcode, operand_a, operand_b, 1}; else  iw_reg[write_pointer] = '{opcode, operand_a, operand_b, operand_a ** operand_b};
             default: iw_reg[write_pointer] = '{opcode,operand_a,operand_b,'bx}; 
         endcase
-      end
      
       // iw_reg[write_pointer] = '{opcode,operand_a,operand_b,operand_rezultat};
     end

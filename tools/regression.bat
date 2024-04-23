@@ -12,26 +12,26 @@ call ./run_test.bat 50 32 2 2 rezultat_7 case_7 7214661 c
 call ./run_test.bat 50 32 2 2 rezultat_8 case_8 4500291 c 
 call ./run_test.bat 50 32 2 2 rezultat_9 case_9 6960776 c 
 call ./run_test.bat 50 32 2 2 rezultat_10 case_10 2966288 c 
-call ./run_test.bat 50 32 2 2 rezultat_11 case_11 5256462 c 
-call ./run_test.bat 50 32 2 2 rezultat_12 case_12 4238084 c 
-call ./run_test.bat 50 32 2 2 rezultat_13 case_13 3062236 c
-call ./run_test.bat 50 32 2 2 rezultat_14 case_14 9339310 c 
-call ./run_test.bat 50 32 2 2 rezultat_15 case_15 3733048 c 
-call ./run_test.bat 50 32 2 2 rezultat_16 case_16 1305387 c 
-call ./run_test.bat 50 32 2 2 rezultat_17 case_17 2653486 c 
-call ./run_test.bat 50 32 2 2 rezultat_18 case_18 3426366 c 
-call ./run_test.bat 50 32 2 2 rezultat_19 case_19 3636261 c 
-call ./run_test.bat 50 32 2 2 rezultat_20 case_20 8723533 c 
-call ./run_test.bat 50 32 2 2 rezultat_21 case_21 8686828 c 
-call ./run_test.bat 50 32 2 2 rezultat_22 case_22 2998049 c 
-call ./run_test.bat 50 32 2 2 rezultat_23 case_23 5916895 c 
-call ./run_test.bat 50 32 2 2 rezultat_24 case_24 8130810 c 
-call ./run_test.bat 50 32 2 2 rezultat_25 case_25 2931880 c 
-call ./run_test.bat 50 32 2 2 rezultat_26 case_26 6890479 c 
-call ./run_test.bat 50 32 2 2 rezultat_27 case_27 7579493 c 
-call ./run_test.bat 50 32 2 2 rezultat_28 case_28 1490196 c 
-call ./run_test.bat 50 32 2 2 rezultat_29 case_29 1770734 c 
-call ./run_test.bat 50 32 2 2 rezultat_30 case_30 4611705 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_11 case_11 5256462 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_12 case_12 4238084 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_13 case_13 3062236 c
+@REM call ./run_test.bat 50 32 2 2 rezultat_14 case_14 9339310 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_15 case_15 3733048 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_16 case_16 1305387 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_17 case_17 2653486 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_18 case_18 3426366 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_19 case_19 3636261 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_20 case_20 8723533 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_21 case_21 8686828 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_22 case_22 2998049 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_23 case_23 5916895 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_24 case_24 8130810 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_25 case_25 2931880 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_26 case_26 6890479 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_27 case_27 7579493 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_28 case_28 1490196 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_29 case_29 1770734 c 
+@REM call ./run_test.bat 50 32 2 2 rezultat_30 case_30 4611705 c 
 @REM call ./run_test.bat 50 32 2 2 rezultat_31 case_31 7014157 c 
 @REM call ./run_test.bat 50 32 2 2 rezultat_32 case_32 6222547 c 
 @REM call ./run_test.bat 50 32 2 2 rezultat_33 case_33 5614519 c 

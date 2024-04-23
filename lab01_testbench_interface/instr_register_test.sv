@@ -68,9 +68,10 @@ module instr_register_test
      $display("\nWriting values to register stack...");
    
     
-    @(posedge clk) load_en = 1'b1;  // enable writing to register
+      // enable writing to register
     repeat (WRITE_NR) begin
       @(posedge clk) randomize_transaction; // ce facem este ca 
+      load_en = 1'b1;
       @(negedge clk) print_transaction; //
     end
     @(posedge clk) load_en = 1'b0;  // turn-off writing to register
